@@ -1,8 +1,8 @@
+use rustwebserver::ThreadPool;
 use std::fs;
 use std::io::prelude::*;
-use std::net::TcpStream;
 use std::net::TcpListener;
-use rustwebserver::ThreadPool;
+use std::net::TcpStream;
 
 fn handle_connection(mut stream: TcpStream) {
     let mut buffer = [0; 512];
@@ -12,8 +12,7 @@ fn handle_connection(mut stream: TcpStream) {
 
     let (status_line, filename) = if buffer.starts_with(get) {
         ("HTTP/1.1 200 OK\r\n\r\n", "resources/www/index.html")
-    }
-    else {
+    } else {
         ("HTTP/1.1 404 NOT FOUND\r\n\r\n", "resources/www/404.html")
     };
 
